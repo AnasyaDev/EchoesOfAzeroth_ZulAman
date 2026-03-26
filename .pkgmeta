@@ -1,0 +1,8 @@
+package-as: EchoesOfAzeroth_ZulAman
+enable-nolib-creation: no
+
+ignore:
+  - README.md
+  - .github
+  - .cursor
+  - .gitignore
