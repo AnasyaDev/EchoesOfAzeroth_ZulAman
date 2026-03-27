@@ -1,22 +1,14 @@
 local _, ns = ...
 local T = ns.Tracks
-
-local function MergeUnique(...)
-    local out = {}
-    local seen = {}
-    for i = 1, select("#", ...) do
-        local list = select(i, ...)
-        if list then
-            for _, track in ipairs(list) do
-                if track and not seen[track] then
-                    seen[track] = true
-                    out[#out + 1] = track
-                end
-            end
-        end
-    end
-    return out
+local api = _G.EchoesOfAzeroth
+local Dsl = api and api.PluginDsl
+if not Dsl then
+    error("EchoesOfAzeroth core must load before EchoesOfAzeroth_ZulAman")
 end
+
+local Pack = Dsl.pack
+local MixedPack = Dsl.mixedPack
+local Merge = Dsl.mergeUnique
 
 local ZULAMAN_TBC_TRACKS = {
     T.ZA_WalkUni01,
@@ -44,7 +36,7 @@ local ZULAMAN_MIDNIGHT_TRACKS = {
     T.MN_AmanizarVillageH,
 }
 
-local AMANI_TRACKS = MergeUnique(
+local AMANI_TRACKS = Merge(
     ZULAMAN_TBC_TRACKS,
     ZULAMAN_MIDNIGHT_TRACKS,
     {
@@ -134,7 +126,7 @@ local DRAKKARI_ANY_TRACKS = {
     T.ZD_SseratusIntro01,
 }
 
-local DRAKKARI_TRACKS = MergeUnique(
+local DRAKKARI_TRACKS = Merge(
     DRAKKARI_DAY_TRACKS,
     DRAKKARI_NIGHT_TRACKS,
     DRAKKARI_ANY_TRACKS
@@ -258,102 +250,97 @@ local ATALAI_TRACKS = {
 -- additional troll-flavored packs the player can assign manually.
 -- ============================================================
 
-ns.MusicPacks = {
-    ZULAMAN = {
-        label = "Zul'Aman (TBC)",
-        any = ZULAMAN_TBC_TRACKS,
-    },
-
-    ZULAMAN_MIDNIGHT = {
-        label = "Zul'Aman (Midnight)",
-        any = ZULAMAN_MIDNIGHT_TRACKS,
-    },
-
-    ZULAMAN_MIXED = {
-        label = "Zul'Aman (TBC + Midnight)",
-        any = MergeUnique(ZULAMAN_TBC_TRACKS, ZULAMAN_MIDNIGHT_TRACKS),
-    },
-
-    AMANI = {
-        label = "Amani",
-        any = AMANI_TRACKS,
-    },
-
-    DARKSPEAR = {
-        label = "Darkspear",
-        any = DARKSPEAR_TRACKS,
-    },
-
-    DRAKKARI = {
-        label = "Drakkari (Northrend)",
-        intro = T.ZD_GeneralIntro01,
-        day = DRAKKARI_DAY_TRACKS,
-        night = DRAKKARI_NIGHT_TRACKS,
-        any = DRAKKARI_ANY_TRACKS,
-    },
-
-    GURUBASHI = {
-        label = "Gurubashi (Stranglethorn)",
-        intro = T.ZG_VoodooMoment,
-        any = GURUBASHI_TRACKS,
-    },
-
-    SANDFURY = {
-        label = "Sandfury (Tanaris / Zul'Farrak)",
-        any = SANDFURY_TRACKS,
-    },
-
-    ZANDALARI = {
-        label = "Zandalari (Pandaria)",
-        intro = T.MOP_ZandalariProphecy01,
-        any = ZANDALARI_TRACKS,
-    },
-
-    ZANDALARI_BFA = {
-        label = "Zandalari (BFA)",
-        intro = T.BFA_ZuldazarIntroA,
-        any = ZANDALARI_BFA_TRACKS,
-    },
-
-    ATALAI = {
-        label = "Atal'ai",
-        any = ATALAI_TRACKS,
-    },
-
-    TROLL_MIXED = {
-        label = "Troll Mixed",
-        any = MergeUnique(
-            AMANI_TRACKS,
-            DARKSPEAR_TRACKS,
-            GURUBASHI_TRACKS,
-            SANDFURY_TRACKS,
-            DRAKKARI_TRACKS,
-            ZANDALARI_TRACKS,
-            ZANDALARI_BFA_TRACKS,
-            ATALAI_TRACKS,
-            {
-                T.MN_AtalAmanA,
-                T.MN_AtalAmanB,
-                T.MN_AtalAmanC,
-                T.MN_AtalAmanD,
-                T.MN_AtalAmanE,
-                T.MN_AtalAmanH,
-            }
-        ),
-    },
+local ZULAMAN = Pack {
+    label = "Zul'Aman (TBC)",
+    any = ZULAMAN_TBC_TRACKS,
 }
 
-ns.MusicPackOrder = {
-    "ZULAMAN",
-    "ZULAMAN_MIDNIGHT",
-    "ZULAMAN_MIXED",
-    "AMANI",
-    "DARKSPEAR",
-    "DRAKKARI",
-    "GURUBASHI",
-    "SANDFURY",
-    "ZANDALARI",
-    "ZANDALARI_BFA",
-    "ATALAI",
-    "TROLL_MIXED",
+local ZULAMAN_MIDNIGHT = Pack {
+    label = "Zul'Aman (Midnight)",
+    any = ZULAMAN_MIDNIGHT_TRACKS,
+}
+
+local ZULAMAN_MIXED = MixedPack("Zul'Aman (TBC + Midnight)", ZULAMAN, ZULAMAN_MIDNIGHT)
+
+local AMANI = Pack {
+    label = "Amani",
+    any = AMANI_TRACKS,
+}
+
+local DARKSPEAR = Pack {
+    label = "Darkspear",
+    any = DARKSPEAR_TRACKS,
+}
+
+local DRAKKARI = Pack {
+    label = "Drakkari (Northrend)",
+    intro = T.ZD_GeneralIntro01,
+    day = DRAKKARI_DAY_TRACKS,
+    night = DRAKKARI_NIGHT_TRACKS,
+    any = DRAKKARI_ANY_TRACKS,
+}
+
+local GURUBASHI = Pack {
+    label = "Gurubashi (Stranglethorn)",
+    intro = T.ZG_VoodooMoment,
+    any = GURUBASHI_TRACKS,
+}
+
+local SANDFURY = Pack {
+    label = "Sandfury (Tanaris / Zul'Farrak)",
+    any = SANDFURY_TRACKS,
+}
+
+local ZANDALARI = Pack {
+    label = "Zandalari (Pandaria)",
+    intro = T.MOP_ZandalariProphecy01,
+    any = ZANDALARI_TRACKS,
+}
+
+local ZANDALARI_BFA = Pack {
+    label = "Zandalari (BFA)",
+    intro = T.BFA_ZuldazarIntroA,
+    any = ZANDALARI_BFA_TRACKS,
+}
+
+local ATALAI = Pack {
+    label = "Atal'ai",
+    any = ATALAI_TRACKS,
+}
+
+local TROLL_MIXED = Pack {
+    label = "Troll Mixed",
+    any = Merge(
+        AMANI_TRACKS,
+        DARKSPEAR_TRACKS,
+        GURUBASHI_TRACKS,
+        SANDFURY_TRACKS,
+        DRAKKARI_TRACKS,
+        ZANDALARI_TRACKS,
+        ZANDALARI_BFA_TRACKS,
+        ATALAI_TRACKS,
+        {
+            T.MN_AtalAmanA,
+            T.MN_AtalAmanB,
+            T.MN_AtalAmanC,
+            T.MN_AtalAmanD,
+            T.MN_AtalAmanE,
+            T.MN_AtalAmanH,
+        }
+    ),
+}
+
+ns.MusicPacks = {
+    ZULAMAN = ZULAMAN,
+    ZULAMAN_MIDNIGHT = ZULAMAN_MIDNIGHT,
+    ZULAMAN_MIXED = ZULAMAN_MIXED,
+    AMANI = AMANI,
+    DARKSPEAR = DARKSPEAR,
+    DRAKKARI = DRAKKARI,
+    GURUBASHI = GURUBASHI,
+    SANDFURY = SANDFURY,
+    ZANDALARI = ZANDALARI,
+    ZANDALARI_BFA = ZANDALARI_BFA,
+    ATALAI = ATALAI,
+    TROLL_MIXED = TROLL_MIXED,
 }

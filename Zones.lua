@@ -1,4 +1,9 @@
 local _, ns = ...
+local api = _G.EchoesOfAzeroth
+local Dsl = api and api.PluginDsl
+if not Dsl then
+    error("EchoesOfAzeroth core must load before EchoesOfAzeroth_ZulAman")
+end
 
 -- ============================================================
 -- Zone -> music-pack mapping
@@ -15,8 +20,5 @@ local _, ns = ...
 
 ns.ZoneMusic = {
     -- Zul'Aman (UiMapID 2437 in Midnight runtime)
-    [2437] = {
-        nameKey = "ZULAMAN",
-        pack = "ZULAMAN_MIXED",
-    },
+    [2437] = Dsl.zone("ZULAMAN", "ZULAMAN"),
 }

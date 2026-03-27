@@ -1,11 +1,12 @@
 local _, ns = ...
 
-local register = _G.EchoesOfAzeroth and _G.EchoesOfAzeroth.RegisterPlugin
-if not register then
+local api = _G.EchoesOfAzeroth
+local Dsl = api and api.PluginDsl
+if not Dsl then
     error("EchoesOfAzeroth core must load before EchoesOfAzeroth_ZulAman")
 end
 
-register({
+Dsl.registerPlugin({
     id = "zulaman",
     title = "Zul'Aman",
     description = "Amani and broader troll music for Zul'Aman.",
@@ -14,7 +15,6 @@ register({
     tracks = ns.Tracks,
     durations = ns.TrackDurations,
     packs = ns.MusicPacks,
-    packOrder = ns.MusicPackOrder,
     zones = ns.ZoneMusic,
     locales = ns.L,
     subzoneNames = ns.SubzoneNames,
