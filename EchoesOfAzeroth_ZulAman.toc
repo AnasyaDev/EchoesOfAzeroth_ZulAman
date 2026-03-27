@@ -2,6 +2,7 @@
 ## Title: Echoes of Azeroth: Zul'Aman
 ## Notes: Zul'Aman troll music content plugin for Echoes of Azeroth
 ## Version: 1.0.0
+## IconTexture: Interface\AddOns\EchoesOfAzeroth_ZulAman\icon.png
 ## X-Curse-Project-ID: 1496256
 ## Dependencies: EchoesOfAzeroth
 
