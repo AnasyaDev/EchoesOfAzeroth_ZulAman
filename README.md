@@ -58,3 +58,9 @@ Track durations were measured from the downloadable audio files so pack rotation
 - The plugin provides content only
 - Playback, profiles, custom packs, custom zones, and import/export live in the core addon
 - Installing this plugin through CurseForge should also install the core addon when project relations are configured as required dependencies
+
+## Community profiles
+
+`EchoesOfAzeroth` is meant to grow as a community addon.
+
+If you build a profile that feels especially polished, immersive, or lore-accurate, please share it. Great community profiles can help refine the addon over time, and an especially strong configuration may be adopted as an official default or recommended setup in the future.
