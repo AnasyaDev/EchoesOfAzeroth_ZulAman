@@ -36,9 +36,80 @@ local ZULAMAN_MIDNIGHT_TRACKS = {
     T.MN_AmanizarVillageH,
 }
 
+local ZEBALAR_TRACKS = {
+    T.MN_ZebAlarA,
+    T.MN_ZebAlarB,
+    T.MN_ZebAlarC,
+    T.MN_ZebAlarD,
+    T.MN_ZebAlarE,
+    T.MN_ZebAlarF,
+    T.MN_ZebAlarH,
+}
+
+local HALAZZI_LOA_TRACKS = {
+    T.MN_HalazziLoaA,
+    T.MN_HalazziLoaB,
+    T.MN_HalazziLoaC,
+    T.MN_HalazziLoaD,
+    T.MN_HalazziLoaE,
+    T.MN_HalazziLoaF,
+    T.MN_HalazziLoaG,
+    T.MN_HalazziLoaH,
+}
+
+local JANALAI_LOA_TRACKS = {
+    T.MN_JanalaiLoaA,
+    T.MN_JanalaiLoaB,
+    T.MN_JanalaiLoaC,
+    T.MN_JanalaiLoaD,
+    T.MN_JanalaiLoaE,
+    T.MN_JanalaiLoaF,
+    T.MN_JanalaiLoaH,
+}
+
+local NALORAKK_LOA_TRACKS = {
+    T.MN_NalorakkLoaA,
+    T.MN_NalorakkLoaB,
+    T.MN_NalorakkLoaC,
+    T.MN_NalorakkLoaD,
+    T.MN_NalorakkLoaE,
+    T.MN_NalorakkLoaF,
+    T.MN_NalorakkLoaG,
+    T.MN_NalorakkLoaH,
+    T.MN_NalorakkLoaI,
+}
+
+local AKILZON_LOA_TRACKS = {
+    T.MN_AkilzonLoaA,
+    T.MN_AkilzonLoaB,
+    T.MN_AkilzonLoaC,
+    T.MN_AkilzonLoaD,
+    T.MN_AkilzonLoaH,
+}
+
+local TROLL_COMBAT_TRACKS = {
+    T.MN_TrollCombatA,
+    T.MN_TrollCombatB,
+    T.MN_TrollCombatC,
+    T.MN_TrollCombatD,
+    T.MN_TrollCombatE,
+    T.MN_TrollCombatF,
+    T.MN_TrollCombatG,
+    T.MN_TrollCombatH,
+    T.MN_TrollCombatI,
+    T.MN_TrollCombatJ,
+    T.MN_TrollCombatK,
+    T.MN_TrollCombatL,
+}
+
 local AMANI_TRACKS = Merge(
     ZULAMAN_TBC_TRACKS,
     ZULAMAN_MIDNIGHT_TRACKS,
+    ZEBALAR_TRACKS,
+    HALAZZI_LOA_TRACKS,
+    JANALAI_LOA_TRACKS,
+    NALORAKK_LOA_TRACKS,
+    AKILZON_LOA_TRACKS,
     {
         T.MN_AtalAmanA,
         T.MN_AtalAmanB,
@@ -267,6 +338,36 @@ local AMANI = Pack {
     any = AMANI_TRACKS,
 }
 
+local ZEBALAR = Pack {
+    label = "Zeb'Alar",
+    any = ZEBALAR_TRACKS,
+}
+
+local HALAZZI_LOA = Pack {
+    label = "Halazzi Loa",
+    any = HALAZZI_LOA_TRACKS,
+}
+
+local JANALAI_LOA = Pack {
+    label = "Jan'alai Loa",
+    any = JANALAI_LOA_TRACKS,
+}
+
+local NALORAKK_LOA = Pack {
+    label = "Nalorakk Loa",
+    any = NALORAKK_LOA_TRACKS,
+}
+
+local AKILZON_LOA = Pack {
+    label = "Akil'zon Loa",
+    any = AKILZON_LOA_TRACKS,
+}
+
+local TROLL_COMBAT = Pack {
+    label = "Troll Combat",
+    any = TROLL_COMBAT_TRACKS,
+}
+
 local DARKSPEAR = Pack {
     label = "Darkspear",
     any = DARKSPEAR_TRACKS,
@@ -335,6 +436,12 @@ ns.MusicPacks = {
     ZULAMAN_MIDNIGHT = ZULAMAN_MIDNIGHT,
     ZULAMAN_MIXED = ZULAMAN_MIXED,
     AMANI = AMANI,
+    ZEBALAR = ZEBALAR,
+    HALAZZI_LOA = HALAZZI_LOA,
+    JANALAI_LOA = JANALAI_LOA,
+    NALORAKK_LOA = NALORAKK_LOA,
+    AKILZON_LOA = AKILZON_LOA,
+    TROLL_COMBAT = TROLL_COMBAT,
     DARKSPEAR = DARKSPEAR,
     DRAKKARI = DRAKKARI,
     GURUBASHI = GURUBASHI,
