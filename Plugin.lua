@@ -9,7 +9,7 @@ end
 Dsl.registerPlugin({
     id = "zulaman",
     title = "Zul'Aman",
-    description = "Amani and broader troll music for Zul'Aman.",
+    description = "Classic-era troll music for Zul'Aman and The Coiled Isle, with later troll packs.",
     order = 20,
     category = "Eastern Kingdoms",
     tracks = ns.Tracks,
